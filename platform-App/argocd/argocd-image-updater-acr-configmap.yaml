@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-image-updater-acr-script
+  namespace: argocd
+data:
+  acr.sh: |
+    #!/bin/sh                                                                                                                                                                                                                         │
+    REGISTRY="todoappproject.azurecr.io"                                                                                                                                                                                           │
+    USERNAME="962ab8ec-0f0f-4332-84d4-ab486070541d"                                                                                                                                                                                   │
+    PASSWORD=".NX8Q~AieOIeHXTyk5Jexg~2mtgVL6OV0krFPbyh"                                                                                                                                                                               │
+    if [ -n "$PASSWORD" ]; then                                                                                                                                                                                                       │
+      echo "$USERNAME:$PASSWORD"                                                                                                                                                                                                    │
+    else                                                                                                                                                                                                                              │
+      echo "Error: Failed to retrieve access token" >&2                                                                                                                                                                             │
+      exit 1                                                                                                                                                                                                                        │
+    fi

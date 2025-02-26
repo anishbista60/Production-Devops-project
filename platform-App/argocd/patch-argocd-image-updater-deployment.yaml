@@ -1,0 +1,19 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: argocd-image-updater
+spec:
+  template:
+    spec:
+      containers:
+      - name: argocd-image-updater
+        volumeMounts:
+        - name: script-volume
+          mountPath: /app/acr.sh
+          subPath: acr.sh
+          readOnly: true
+      volumes:
+      - name: script-volume
+        configMap:
+          name: argocd-image-updater-acr-script
+
