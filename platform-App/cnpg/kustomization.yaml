@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - postgres-namespace.yaml                   # namespace where the postgres cluster will be deployed
+  - https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.19/releases/cnpg-1.19.6.yaml
+  - postgres-cluster.yaml                  # cluster deployed in the default namespace
+#  - https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/kube-stack-config.yaml  # for monitoring 

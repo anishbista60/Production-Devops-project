@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: non-prod-kube-prometheus-stack                                                          # {env}-{app_name}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+spec:
+  project: default
+  source:
+    repoURL: https://bitbucket.org/actionablescience/git-ops.git                                # Repository URL                        
+    targetRevision: HEAD
+    path: platform/monitoring/kube-prometheus-stack                                             # Path to the application directory 
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring                                                                       # Namespace where the application will be deployed(will be same as the namespace in kustomization.yaml)
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=false
+      - ServerSideApply=true                                                                    # need to enable this
