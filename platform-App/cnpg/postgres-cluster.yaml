@@ -2,7 +2,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: my-postgresql
-  namespace: default              #  try put the namespace it in the kustomization.yaml 
+  namespace: postgres              #  try put the namespace it in the kustomization.yaml 
 spec:
   instances: 3                
   storage:
