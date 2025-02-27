@@ -6,7 +6,7 @@ WORKDIR /app
 COPY --chown=node:node package.json package-lock.json ./
 
 RUN npm install --frozen-lockfile
-COPY . .
+COPY --chown=node:node . .
 RUN npm run build
 
 
