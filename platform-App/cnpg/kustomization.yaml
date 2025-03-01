@@ -6,3 +6,5 @@ resources:
   - https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.19/releases/cnpg-1.19.6.yaml
   - postgres-cluster.yaml                  # cluster deployed in the default namespace
 #  - https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/kube-stack-config.yaml  # for monitoring 
+  - secret.yaml
+  - configmap.yaml

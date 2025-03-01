@@ -2,16 +2,20 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: my-postgresql
-  namespace: postgres              #  try put the namespace it in the kustomization.yaml 
+  namespace: postgres          
 spec:
-  instances: 3                
+  instances: 1           
   storage:
     size: 1Gi
-  monitoring:                       # Required if you want to enable monitoring for this cluster
-    enablePodMonitor: true          #                                <----      This one as well
+  monitoring:                     
+    enablePodMonitor: false     
   bootstrap:
     initdb:
       database: todos
       owner: anish
       secret:
         name: postgresql-credentials
+      postInitApplicationSQLRefs:
+        configMapRefs:
+        - name: postgresql-init-scripts
+          key: configmap.sql

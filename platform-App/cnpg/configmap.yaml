@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgresql-init-scripts
+  namespace: postgres
+data:
+  configmap.sql: |
+    -- Create user "anish" with password "password" if not exists
+    DO $$
+    BEGIN
+      IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_roles WHERE rolname = 'anish') THEN
+        CREATE ROLE anish WITH LOGIN PASSWORD 'password';
+      END IF;
+    END$$;
+    
+    -- Create table todos in the current database (which is already "todos")
+    CREATE TABLE IF NOT EXISTS todos (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        completed BOOLEAN DEFAULT FALSE
+    );
