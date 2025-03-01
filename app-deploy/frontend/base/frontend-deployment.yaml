@@ -18,7 +18,7 @@ spec:
         runAsNonRoot: true
       containers:
       - name: frontend
-        image: your-frontend-image:latest
+        image: anish60/frontend:latest
         ports:
           - containerPort: 80
         resources:

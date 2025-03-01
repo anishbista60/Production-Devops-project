@@ -4,5 +4,4 @@ resources:
 - ../../base
 namespace: dev
 namePrefix: dev-
-patches:
-- path: deploy.yaml
+
