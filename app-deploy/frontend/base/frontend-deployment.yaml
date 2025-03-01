@@ -14,7 +14,6 @@ spec:
       labels:
         app: frontend
     spec:
-      # Pod-level security context to enforce non-root execution
       securityContext:
         runAsNonRoot: true
       containers:
