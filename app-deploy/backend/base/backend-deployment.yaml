@@ -14,38 +14,26 @@ spec:
       labels:
         app: backend
     spec:
-      # Pod-level security context to enforce non-root execution
       securityContext:
         runAsNonRoot: true
-      # initContainers:
-      # - name: wait-for-db
-      #   image: curlimages/curl:8.0.1
-      #   command:
-      #     - sh
-      #     - -c
-      #     - |
-      #       echo "Waiting for Cloud Native PG database to be healthy..."
-      #       until curl --silent --fail http://cloudnative-pg-service:8080/health; do
-      #         echo "Database not ready - retrying in 5 seconds..."
-      #         sleep 5
-      #       done
-      #       echo "Cloud Native PG database is up and running."
-        # securityContext:
-        #   runAsUser: 1000
-        #   allowPrivilegeEscalation: false
+      initContainers:
+      - name: wait-for-db
+        image: curlimages/curl:8.0.1
+        command:
+          - sh
+          - -c
+          - |
+            echo "Waiting for Cloud Native PG database to be healthy..."
+            until curl --silent --fail http://cloudnative-pg-service:8080/health; do
+              echo "Database not ready - retrying in 5 seconds..."
+              sleep 5
+            done
+            echo "Cloud Native PG database is up and running."
       containers:
       - name: backend
         image: anish60/backend:latest
         ports:
           - containerPort: 8080
-        resources:
-          requests:
-            cpu: "200m"
-            memory: "256Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
-        # Inject all environment variables from the secret
         envFrom:
           - secretRef:
               name: database-credentials

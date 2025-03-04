@@ -5,3 +5,5 @@ resources:
 namespace: dev
 namePrefix: dev-
 
+patchesStrategicMerge:
+  - frontend-dev-deploy-patch.yaml

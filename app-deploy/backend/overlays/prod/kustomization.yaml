@@ -4,3 +4,6 @@ resources:
 - ../../base
 namespace: prod
 namePrefix: prod-
+
+patchesStrategicMerge:
+  - backend-prod-deploy-patch.yaml
