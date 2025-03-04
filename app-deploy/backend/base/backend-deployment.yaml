@@ -18,17 +18,16 @@ spec:
         runAsNonRoot: true
       initContainers:
       - name: wait-for-db
-        image: curlimages/curl:8.0.1
+        image: postgres:15
         command:
           - sh
           - -c
           - |
-            echo "Waiting for Cloud Native PG database to be healthy..."
-            until curl --silent --fail http://cloudnative-pg-service:8080/health; do
-              echo "Database not ready - retrying in 5 seconds..."
+            until pg_isready -h my-postgresql-rw.postgres.svc.cluster.local -p 5432; do
+              echo "Waiting for PostgreSQL database to be ready..."
               sleep 5
             done
-            echo "Cloud Native PG database is up and running."
+            echo "PostgreSQL database is up and running."
       containers:
       - name: backend
         image: anish60/backend:latest
