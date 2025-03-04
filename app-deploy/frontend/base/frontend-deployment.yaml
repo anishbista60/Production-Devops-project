@@ -21,13 +21,6 @@ spec:
         image: anish60/frontend:latest
         ports:
           - containerPort: 80
-        resources:
-          requests:
-            cpu: "200m"
-            memory: "256Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
         securityContext:
           runAsUser: 1000
           allowPrivilegeEscalation: false
