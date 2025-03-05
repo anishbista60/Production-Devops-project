@@ -12,7 +12,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: platform-app/cnpg
+    path: platform-apps/cnpg
     repoURL: https://github.com/anishbista60/Production-Devops-project.git
     targetRevision: main
   syncPolicy:

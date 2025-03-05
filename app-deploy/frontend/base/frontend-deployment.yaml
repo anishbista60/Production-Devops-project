@@ -14,13 +14,12 @@ spec:
       labels:
         app: frontend
     spec:
-      securityContext:
-        runAsNonRoot: true
       containers:
       - name: frontend
         image: anish60/frontend:latest
         ports:
-          - containerPort: 80
-        securityContext:
-          runAsUser: 1000
-          allowPrivilegeEscalation: false
+        - containerPort: 80
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://dev-backend-service:8080"
+

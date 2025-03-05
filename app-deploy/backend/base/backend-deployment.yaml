@@ -19,6 +19,8 @@ spec:
       initContainers:
       - name: wait-for-db
         image: postgres:15
+        securityContext:
+          runAsUser: 999  # Ensure the initContainer does not run as root
         command:
           - sh
           - -c
