@@ -12,7 +12,10 @@ data:
         completed BOOLEAN DEFAULT FALSE
     );
 
-    -- Grant permissions to anish user
+    -- Grant permissions to anish user on the table
     GRANT SELECT, INSERT, UPDATE, DELETE 
     ON ALL TABLES IN SCHEMA public 
     TO anish;
+
+    -- Grant permissions on the sequence used for auto-incrementing IDs
+    GRANT USAGE, SELECT, UPDATE ON SEQUENCE public.todos_id_seq TO anish;
