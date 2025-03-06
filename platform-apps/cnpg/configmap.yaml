@@ -5,21 +5,11 @@ metadata:
   namespace: postgres
 data:
   configmap.sql: |
-    -- Create table in public schema
-    CREATE TABLE IF NOT EXISTS public.todos (
+    ALTER USER anish WITH PASSWORD 'password'
+    
+    CREATE TABLE todos (
         id SERIAL PRIMARY KEY,
         title TEXT NOT NULL,
         completed BOOLEAN DEFAULT FALSE
     );
     
-    -- Grant ALL permissions to anish user on the table
-    GRANT ALL PRIVILEGES ON TABLE public.todos TO anish;
-    
-    -- Grant ALL permissions on the sequence 
-    GRANT ALL ON SEQUENCE public.todos_id_seq TO anish;
-    
-    -- Also explicitly alter the sequence owner
-    ALTER SEQUENCE public.todos_id_seq OWNER TO anish;
-    
-    -- For completeness, grant schema permissions
-    GRANT ALL ON SCHEMA public TO anish;
