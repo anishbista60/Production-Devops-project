@@ -12,4 +12,6 @@ data:
         title TEXT NOT NULL,
         completed BOOLEAN DEFAULT FALSE
     );
-    
+
+    grant all on sequence todos_id_seq to anish;
+
