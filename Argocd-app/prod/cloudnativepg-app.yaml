@@ -12,9 +12,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: app-deploy/backend/overlays/dev
-    repoURL: git@github.com:enkryptai/enkryptai-apiaas.git
-    targetRevision: dev
+    path: platform-apps/cnpg
+    repoURL: https://github.com/anishbista60/Production-Devops-project.git
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true

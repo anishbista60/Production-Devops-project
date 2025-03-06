@@ -17,7 +17,7 @@ spec:
   project: default
   source:
     path: app-deploy/backend/overlays/prod
-    repoURL: git@githubacb.com:enkryptai/enkryptai-apiaas.git
+    repoURL: https://github.com/anishbista60/Production-Devops-project.git
     targetRevision: main
   syncPolicy:
     automated:
