@@ -4,18 +4,22 @@ metadata:
   name: postgresql-init-scripts
   namespace: postgres
 data:
-  configmap.sql: |  
+  configmap.sql: |
     -- Create table in public schema
     CREATE TABLE IF NOT EXISTS public.todos (
         id SERIAL PRIMARY KEY,
         title TEXT NOT NULL,
         completed BOOLEAN DEFAULT FALSE
     );
-
-    -- Grant permissions to anish user on the table
-    GRANT SELECT, INSERT, UPDATE, DELETE 
-    ON ALL TABLES IN SCHEMA public 
-    TO anish;
-
-    -- Grant permissions on the sequence used for auto-incrementing IDs
-    GRANT USAGE, SELECT, UPDATE ON SEQUENCE public.todos_id_seq TO anish;
+    
+    -- Grant ALL permissions to anish user on the table
+    GRANT ALL PRIVILEGES ON TABLE public.todos TO anish;
+    
+    -- Grant ALL permissions on the sequence 
+    GRANT ALL ON SEQUENCE public.todos_id_seq TO anish;
+    
+    -- Also explicitly alter the sequence owner
+    ALTER SEQUENCE public.todos_id_seq OWNER TO anish;
+    
+    -- For completeness, grant schema permissions
+    GRANT ALL ON SCHEMA public TO anish;
