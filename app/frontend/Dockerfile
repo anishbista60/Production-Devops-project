@@ -7,7 +7,7 @@ COPY --chown=node:node package.json package-lock.json ./
 
 RUN npm install --frozen-lockfile
 COPY . .
-RUN npm run build
+RUN --chown=node:node npm run build
 
 
 # Stage 2: Serve with nginx alpine image
