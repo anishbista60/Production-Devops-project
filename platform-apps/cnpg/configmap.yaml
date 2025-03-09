@@ -4,14 +4,9 @@ metadata:
   name: postgresql-init-scripts
   namespace: postgres
 data:
-  configmap.sql: |
-    ALTER USER anish WITH PASSWORD 'password'
-    
+  configmap.sql: |    
     CREATE TABLE todos (
         id SERIAL PRIMARY KEY,
         title TEXT NOT NULL,
         completed BOOLEAN DEFAULT FALSE
     );
-
-    grant all on sequence todos_id_seq to anish;
-

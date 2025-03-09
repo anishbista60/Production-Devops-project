@@ -2,20 +2,18 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: my-postgresql
-  namespace: postgres          
+  namespace: postgres
 spec:
-  instances: 1           
+  instances: 1
   storage:
     size: 1Gi
-  monitoring:                     
-    enablePodMonitor: false     
+  monitoring:
+    enablePodMonitor: false
   bootstrap:
     initdb:
       database: todos
       owner: anish
       secret:
         name: postgresql-credentials
-      postInitApplicationSQLRefs:
-        configMapRefs:
-        - name: postgresql-init-scripts
-          key: configmap.sql
+      postInitSQL:
+        - CREATE TABLE IF NOT EXISTS todos (id SERIAL PRIMARY KEY, title TEXT NOT NULL, completed BOOLEAN DEFAULT FALSE);
