@@ -15,5 +15,17 @@ spec:
       owner: anish
       secret:
         name: postgresql-credentials
-      postInitSQL:
-        - CREATE TABLE IF NOT EXISTS todos (id SERIAL PRIMARY KEY, title TEXT NOT NULL, completed BOOLEAN DEFAULT FALSE);
+      postInitApplicationSQL:
+        - |
+          CREATE TABLE IF NOT EXISTS todos (
+            id SERIAL PRIMARY KEY,
+            title TEXT NOT NULL,
+            completed BOOLEAN DEFAULT FALSE
+          );
+        - |
+          GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.todos TO anish;
+        - |
+          GRANT ALL PRIVILEGES ON TABLE public.todos TO anish;
+        - |
+          GRANT USAGE, SELECT, UPDATE ON SEQUENCE public.todos_id_seq TO anish;
+
