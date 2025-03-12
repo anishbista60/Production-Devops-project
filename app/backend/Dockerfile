@@ -2,16 +2,23 @@
 FROM cgr.dev/chainguard/go AS builder
 WORKDIR /app
 
-# Copy source code and build binary
+# Copy source code
 COPY . .
-RUN go build -o backend .
+
+# Detect system architecture dynamically and build accordingly
+ARG TARGETOS=linux
+ARG TARGETARCH=amd64
+RUN CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -o backend .
+
+# Ensure the binary is executable
+RUN chmod +x backend
 
 # Runtime stage (minimal final image)
-FROM cgr.dev/chainguard/glibc-dynamic
+FROM cgr.dev/chainguard/static
 WORKDIR /app
 
-# Copy only the compiled binary from builder stage
+# Copy only the compiled binary
 COPY --from=builder /app/backend /app/backend
 
-# Run the application
-CMD ["/app/backend"]
+# Ensure correct entrypoint
+ENTRYPOINT ["/app/backend"]

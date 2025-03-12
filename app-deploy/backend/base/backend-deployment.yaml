@@ -32,7 +32,7 @@ spec:
             echo "PostgreSQL database is up and running."
       containers:
       - name: backend
-        image: anish60/backend:latest
+        image: utsab12312/backend:latest
         ports:
           - containerPort: 8080
         envFrom:
