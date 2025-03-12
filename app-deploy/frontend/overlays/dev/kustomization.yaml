@@ -1,9 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../../base
+  - ../../base
+  - configmap.yaml  # Ensure that the configmap is properly referenced here
+
 namespace: dev
 namePrefix: dev-
 
-patchesStrategicMerge:
-  - frontend-dev-deploy-patch.yaml
+patches:
+  - path: frontend-dev-deploy-patch.yaml  # Add 'path' and ensure correct file location
+    target:
+      kind: Deployment
+      name: frontend-deployment

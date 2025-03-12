@@ -3,8 +3,8 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
-  // Use the environment variable with a fallback to localhost for development.
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+
+  const API_URL = window._env_.REACT_APP_API_URL || 'http://localhost:8080';
   console.log("Using API URL:", API_URL);
   
   const [todos, setTodos] = useState([]);
