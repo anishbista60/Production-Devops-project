@@ -8,7 +8,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// getEnv returns the environment variable for key if it exists; otherwise returns the default
+// getEnv returns the environment variable for key if it exists; otherwise returns the defaul
 func getEnv(key, defaultValue string) string {
 	if value := os.Getenv(key); value != "" {
 		return value
