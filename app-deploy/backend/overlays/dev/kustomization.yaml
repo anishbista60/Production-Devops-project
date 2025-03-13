@@ -7,3 +7,4 @@ namePrefix: dev-
 
 patchesStrategicMerge:
   - backend-dev-deploy-patch.yaml
+  - ingress-dev-patch.yaml

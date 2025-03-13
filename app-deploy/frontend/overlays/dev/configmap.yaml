@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: frontend-config
-data:
-  config.js: |
-    window._env_ = {
-      REACT_APP_API_URL: "http://dev-backend-service:8080"
-    };
