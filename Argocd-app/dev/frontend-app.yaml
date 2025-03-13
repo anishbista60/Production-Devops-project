@@ -7,7 +7,6 @@ metadata:
     notifications.argoproj.io/subscribe.on-deployed.slack: 
     notifications.argoproj.io/subscribe.on-sync-failed.slack: 
     argocd-image-updater.argoproj.io/image-list: todoappproject.azurecr.io/frontend
-    argocd-image-updater.argoproj.io/frontend.allow-tags: 
     argocd-image-updater.argoproj.io/frontend.update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git 
 spec:

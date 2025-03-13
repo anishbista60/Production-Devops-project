@@ -32,7 +32,7 @@ spec:
             echo "PostgreSQL database is up and running."
       containers:
       - name: backend
-        image: utsab12312/backend:latest
+        image: todoappproject.azurecr.io/backend:a9d8a5073b10ec05ef5d6567b3b9b362ba740144
         ports:
           - containerPort: 8080
         envFrom:

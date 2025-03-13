@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: utsab12312/frontend:latest
+        image: todoappproject.azurecr.io/frontend:4a180c0a987fb2a26a1a0719dcd6db0edd8c4b7c
         ports:
         - containerPort: 80
         env:
