@@ -15,5 +15,6 @@ spec:
       volumes:
       - name: script-volume
         configMap:
+          defaultMode: 493
           name: argocd-image-updater-acr-script
 
