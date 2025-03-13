@@ -7,3 +7,4 @@ namePrefix: prod-
 
 patchesStrategicMerge:
   - frontend-prod-deploy-patch.yaml
+  - ingress-prod-patch.yaml
