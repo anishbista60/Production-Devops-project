@@ -30,6 +30,7 @@ jobs:
 
       - name: Scan image with Trivy
         uses: aquasecurity/trivy-action@master
+        if: always()
         with:
           image-ref: ${{ secrets.ACR_LOGIN_SERVER }}/backend:${{ github.sha }}
           # Exit with code 1 if vulnerabilities of HIGH severity or above are found
