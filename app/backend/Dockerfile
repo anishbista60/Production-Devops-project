@@ -14,7 +14,7 @@ RUN CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -o backend .
 RUN chmod +x backend
 
 # Runtime stage (minimal final image)
-FROM cgr.dev/chainguard/static
+FROM cgr.dev/chainguard/glibc-dynamic
 WORKDIR /app
 
 # Copy only the compiled binary
