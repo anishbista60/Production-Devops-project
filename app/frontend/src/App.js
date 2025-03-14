@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
 
-  const API_URL = 'http://backend.anishbista.xyz';
+  const API_URL = 'https://backend.anishbista.xyz';
   console.log("Using API URL:", API_URL);  
   
   const [todos, setTodos] = useState([]);
