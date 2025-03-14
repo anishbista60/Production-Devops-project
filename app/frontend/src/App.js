@@ -4,8 +4,11 @@ import './App.css';
 
 function App() {
 
-  const API_URL = 'https://backend.anishbista.xyz';
-  console.log("Using API URL:", API_URL);  
+  const API_URL = window._env_ && window._env_.REACT_APP_API_URL 
+  ? window._env_.REACT_APP_API_URL 
+  : 'http://localhost:8080';
+
+  console.log("Using API URL:", API_URL);
   
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState('');

@@ -19,6 +19,3 @@ spec:
         image: todoappproject.azurecr.io/frontend:4a180c0a987fb2a26a1a0719dcd6db0edd8c4b7c
         ports:
         - containerPort: 80
-        env:
-          - name: REACT_APP_API_URL
-            value: "http://backend.anishbista.xyz"

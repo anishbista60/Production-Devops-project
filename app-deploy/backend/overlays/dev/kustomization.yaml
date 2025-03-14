@@ -5,6 +5,5 @@ resources:
 namespace: dev
 namePrefix: dev-
 
-patchesStrategicMerge:
-  - backend-dev-deploy-patch.yaml
-  #- ingress-dev-patch.yaml
+patches:
+- path: backend-dev-deploy-patch.yaml
