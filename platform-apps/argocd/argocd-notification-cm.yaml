@@ -16,7 +16,7 @@ data:
     - when: app.status.operationState != nil && app.status.operationState.phase == "Failed"
       send: [app-sync-failed-slack]
 
-  trigger.on-sync: |
+  trigger.on-sync-succeeded: |
     - when: app.status.operationState != nil && app.status.operationState.phase == "Succeeded"
       send: [app-sync-success-slack]
 

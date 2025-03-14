@@ -4,9 +4,9 @@ metadata:
   name: frontend
   namespace: argocd
   annotations:
-    notifications.argoproj.io/subscribe.on-sync: "slack"
-    notifications.argoproj.io/subscribe.on-sync-failed: "slack"
-    notifications.argoproj.io/subscribe.on-delete: "slack"
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: notification
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: notification
+    notifications.argoproj.io/subscribe.on-delete.slack: notification
     argocd-image-updater.argoproj.io/image-list: frontend=todoappproject.azurecr.io/frontend
     argocd-image-updater.argoproj.io/frontend.update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git 

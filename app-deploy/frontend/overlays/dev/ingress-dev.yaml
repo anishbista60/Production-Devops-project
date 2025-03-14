@@ -28,6 +28,7 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - frontend.anishbista.xyz
+    - backend.anishbista.xyz
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -43,6 +44,7 @@ spec:
   tls:
   - hosts:
     - frontend.anishbista.xyz
+    - backend.anishbista.xyz
     secretName: todo-tls-secret
   rules:
   - host: "frontend.anishbista.xyz"
