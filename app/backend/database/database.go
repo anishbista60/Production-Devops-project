@@ -17,7 +17,7 @@ func getEnv(key, defaultValue string) string {
 }
 
 func Connect() *sql.DB {
-	// Read environment variables with fallback to default values
+	// Read environment variables with fallback to default 
 	host := getEnv("DB_HOST", "host.docker.internal")
 	port := getEnv("DB_PORT", "5432")
 	user := getEnv("DB_USER", "postgres")
