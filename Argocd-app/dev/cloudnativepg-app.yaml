@@ -4,8 +4,9 @@ metadata:
   name: cnpg
   namespace: argocd
   annotations:
-    notifications.argoproj.io/subscribe.on-deployed.slack: 
-    notifications.argoproj.io/subscribe.on-sync-failed.slack: 
+    notifications.argoproj.io/subscribe.on-sync: "slack"
+    notifications.argoproj.io/subscribe.on-sync-failed: "slack"
+    notifications.argoproj.io/subscribe.on-delete: "slack"
 spec:
   destination:
     server: https://kubernetes.default.svc

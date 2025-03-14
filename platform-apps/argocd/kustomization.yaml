@@ -7,11 +7,11 @@ resources:
 - https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
 #- service-monitor.yaml
 - argocd-image-updater-acr-configmap.yaml
-#- ingress.yaml
 - argocd-github-secret.yaml
 
-# Azure container registry configuration
 patches:
 - path: argocd-image-updater-configmap.yaml
 - path: patch-argocd-image-updater-deployment.yaml
 - path: argocd-cm.yaml
+- path: argocd-notification-cm.yaml
+- path: argocd-notification.secret.yaml
