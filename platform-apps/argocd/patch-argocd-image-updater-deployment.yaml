@@ -8,12 +8,12 @@ spec:
       containers:
       - name: argocd-image-updater
         volumeMounts:
-        - name: script-volume
+        - name: script-ecr-volume
           mountPath: /app/acr.sh
           subPath: acr.sh
           readOnly: true
       volumes:
-      - name: script-volume
+      - name: script-ecr-volume
         configMap:
           defaultMode: 493
           name: argocd-image-updater-acr-script

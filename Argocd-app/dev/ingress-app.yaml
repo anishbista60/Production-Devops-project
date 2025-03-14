@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cnpg
+  namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-deployed.slack: 
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: 
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: platform-apps/ingress-controller
+    repoURL: https://github.com/anishbista60/Production-Devops-project.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

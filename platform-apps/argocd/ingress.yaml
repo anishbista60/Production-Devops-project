@@ -12,17 +12,17 @@ spec:
   tls:
     - hosts:
       - '*.actionable-science-apps-wilcard-tls'
-      secretName: actionable-science-apps-wilcard-tls
+      secretName: argocd-tls-secret
   rules:
-  - host: argocd.apps.actionable-science.com  # Replace with your domain
+  - host: argo.anishbista60.xyz 
     http:
       paths:
-      - pathType: ImplementationSpecific
+      - pathType: /
         backend:
           service:
             name: argocd-server
             port:
-              number: https
+              name: https
 
 # tls.hosts: *.actionable-science-apps-wilcard-tls
 # secretName: actionable-science-apps-wilcard-tls

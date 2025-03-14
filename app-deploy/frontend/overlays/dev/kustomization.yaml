@@ -7,11 +7,7 @@ namespace: dev
 namePrefix: dev-
 
 patches:
-  - path: frontend-dev-deploy-patch.yaml  # Add 'path' and ensure correct file location
+  - path: frontend-dev-deploy-patch.yaml  
     target:
       kind: Deployment
       name: frontend-deployment
-  # - path: ingress-dev-patch.yaml
-  #   target:
-  #     kind: Ingress
-  #     name: frontend-ingress
