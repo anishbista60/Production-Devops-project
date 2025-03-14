@@ -51,3 +51,5 @@ output "aks_connect_command" {
   description = "Command to connect to the AKS cluster."
   value       = "az aks get-credentials --resource-group ${azurerm_resource_group.cluster_group.name} --name ${azurerm_kubernetes_cluster.default.name}"
 }
+
+#k run pod --image todoappproject.azurecr.io/frontend:789621113b62103314c7b24d0137a7ddc3df75fc
