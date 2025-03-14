@@ -8,7 +8,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// getEnv returns the environment variable for key if it exists; otherwise returns the defaul
+// getEnv returns the environment variable for key if it exists; otherwise returns the defau
 func getEnv(key, defaultValue string) string {
 	if value := os.Getenv(key); value != "" {
 		return value
@@ -17,7 +17,7 @@ func getEnv(key, defaultValue string) string {
 }
 
 func Connect() *sql.DB {
-	// Read environment variables with fallback to default values
+	// Read environment variables with fallback to default 
 	host := getEnv("DB_HOST", "host.docker.internal")
 	port := getEnv("DB_PORT", "5432")
 	user := getEnv("DB_USER", "postgres")
