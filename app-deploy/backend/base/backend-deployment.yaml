@@ -37,7 +37,7 @@ spec:
           - containerPort: 8080
         envFrom:
           - secretRef:
-              name: database-credentials
+              name: backend-database-credentials
         securityContext:
           runAsUser: 1000
           allowPrivilegeEscalation: false
