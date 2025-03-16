@@ -1,0 +1,50 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: app-tls-cert
+spec:
+  secretName: app-tls-secret
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - frontend.anishbista.xyz
+    - backend.anishbista.xyz
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - frontend.anishbista.xyz
+    - backend.anishbista.xyz
+    secretName: todo-tls-secret
+  rules:
+  - host: "frontend.anishbista.xyz"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: dev-frontend-service
+            port:
+              number: 80
+  - host: "backend.anishbista.xyz"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: dev-backend-service
+            port:
+              number: 8080

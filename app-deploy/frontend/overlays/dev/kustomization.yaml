@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../base
   - config.yaml
+  - ingress.yaml
 namespace: dev
 namePrefix: dev-
 

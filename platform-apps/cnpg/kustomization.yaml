@@ -5,4 +5,6 @@ resources:
   - postgres-namespace.yaml
   - https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.19/releases/cnpg-1.19.6.yaml
   - postgres-cluster.yaml
+  - azure-vault-auth.yaml
+  - azure-vault-credential.yaml
   - secret.yaml
