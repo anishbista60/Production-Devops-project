@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frontend
+  namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-deployed.slack: 
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: 
+    argocd-image-updater.argoproj.io/image-list: 
+    argocd-image-updater.argoproj.io/frontend.allow-tags: 
+    argocd-image-updater.argoproj.io/frontend.update-strategy: 
+    argocd-image-updater.argoproj.io/write-back-method: 
+spec:
+  destination:
+    namespace: prod
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: app-deploy/frontend/overlays/prod
+    repoURL: https://github.com/anishbista60/Production-Devops-project.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

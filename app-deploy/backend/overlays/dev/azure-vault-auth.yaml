@@ -1,0 +1,16 @@
+apiVersion: external-secrets.io/v1beta1
+kind: SecretStore
+metadata:
+  name: azure-store
+spec:
+  provider:
+    azurekv:
+      tenantId: "c22d1d63-4b94-4bdd-94c8-b2ee397929f7"
+      vaultUrl: "https://todo-vault-prod.vault.azure.net"
+      authSecretRef:
+        clientId:
+          name: azure-secret-sp
+          key: ClientID
+        clientSecret:
+          name: azure-secret-sp
+          key: ClientSecret

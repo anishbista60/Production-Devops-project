@@ -11,7 +11,6 @@ import (
 func main() {
 	router := gin.Default()
 	router.Use(cors.Default())
-
 	db := database.Connect()
 	defer db.Close()
 

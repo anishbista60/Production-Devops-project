@@ -1,0 +1,3 @@
+kustomize:
+  images:
+  - todoappproject.azurecr.io/backend:d95863fe657128bcdd5f04471000b78fc0cff0b3

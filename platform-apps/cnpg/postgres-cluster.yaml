@@ -1,0 +1,31 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: my-postgresql
+  namespace: postgres
+spec:
+  instances: 1
+  storage:
+    size: 1Gi
+  monitoring:
+    enablePodMonitor: false
+  bootstrap:
+    initdb:
+      database: todos
+      owner: anish
+      secret:
+        name: postgresql-credentials
+      postInitApplicationSQL:
+        - |
+          CREATE TABLE IF NOT EXISTS todos (
+            id SERIAL PRIMARY KEY,
+            title TEXT NOT NULL,
+            completed BOOLEAN DEFAULT FALSE
+          );
+        - |
+          GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.todos TO anish;
+        - |
+          GRANT ALL PRIVILEGES ON TABLE public.todos TO anish;
+        - |
+          GRANT USAGE, SELECT, UPDATE ON SEQUENCE public.todos_id_seq TO anish;
+

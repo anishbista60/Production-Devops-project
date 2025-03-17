@@ -3,6 +3,13 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
+
+  const API_URL = window._env_ && window._env_.REACT_APP_API_URL 
+  ? window._env_.REACT_APP_API_URL 
+  : 'http://localhost:8080';
+
+  console.log("Using API URL:", API_URL);
+  
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState('');
 
@@ -11,13 +18,13 @@ function App() {
   }, []);
 
   const fetchTodos = async () => {
-    const response = await axios.get('http://localhost:8080/todos');
+    const response = await axios.get(`${API_URL}/todos`);
     setTodos(response.data);
   };
 
   const addTodo = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:8080/todos', {
+    await axios.post(`${API_URL}/todos`, {
       title,
       completed: false
     });
@@ -26,14 +33,14 @@ function App() {
   };
 
   const toggleTodo = async (id, completed) => {
-    await axios.put(`http://localhost:8080/todos/${id}`, {
+    await axios.put(`${API_URL}/todos/${id}`, {
       completed: !completed
     });
     fetchTodos();
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(`http://localhost:8080/todos/${id}`);
+    await axios.delete(`${API_URL}/todos/${id}`);
     fetchTodos();
   };
 

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      securityContext:
+        runAsNonRoot: true
+      initContainers:
+      - name: wait-for-db
+        image: postgres:15
+        securityContext:
+          runAsUser: 999  
+        command:
+          - sh
+          - -c
+          - |
+            until pg_isready -h my-postgresql-rw.postgres.svc.cluster.local -p 5432; do
+              echo "Waiting for PostgreSQL database to be ready..."
+              sleep 5
+            done
+            echo "PostgreSQL database is up and running."
+      containers:
+      - name: backend
+        image: todoappproject.azurecr.io/backend:a9d8a5073b10ec05ef5d6567b3b9b362ba740144
+        ports:
+          - containerPort: 8080
+        envFrom:
+          - secretRef:
+              name: backend-database-credentials
+        securityContext:
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
