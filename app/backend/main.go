@@ -14,6 +14,14 @@ func main() {
 	db := database.Connect()
 	defer db.Close()
 
+	router.GET("/health", func(c *gin.Context) {
+		if err := db.Ping(); err != nil {
+			c.JSON(500, gin.H{"status": "unhealthy", "error": err.Error()})
+			return
+		}
+		c.JSON(200, gin.H{"status": "healthy"})
+	})
+
 	router.GET("/todos", func(c *gin.Context) {
 		rows, err := db.Query("SELECT id, title, completed FROM todos")
 		if err != nil {

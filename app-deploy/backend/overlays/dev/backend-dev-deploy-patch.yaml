@@ -5,11 +5,25 @@ metadata:
 spec:
   template:
     spec:
-      containers:
-      - name: backend
-        resources:
-          requests:
-            cpu: "200m"   
-            memory: "200Mi"  
-          limits:
-            memory: "200Mi"  
+      containers: 
+        - name: backend
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 15
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 15
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "200Mi"
+            limits:
+              memory: "200Mi"
