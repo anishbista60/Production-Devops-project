@@ -1,0 +1,60 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: todo-frontend-route
+  namespace: dev
+spec:
+  parentRefs:
+    - name: nginx-gateway
+      namespace: nginx-gateway
+  hostnames:
+    - "todo.anishbista.xyz"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: frontend-service
+          port: 80
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: todo-backend-route
+  namespace: dev
+spec:
+  parentRefs:
+    - name: nginx-gateway
+      namespace: nginx-gateway
+  hostnames:
+    - "todoback.anishbista.xyz"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: backend-service
+          port: 8080
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: argocd-route
+  namespace: argocd
+spec:
+  parentRefs:
+    - name: nginx-gateway
+      namespace: nginx-gateway
+  hostnames:
+    - "argocd.anishbista.xyz"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: argocd-server
+          port: 80
+

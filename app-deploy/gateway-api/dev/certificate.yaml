@@ -1,0 +1,28 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: app-tls-cert
+  namespace: dev
+spec:
+  secretName: app-tls-cert
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - todo.anishbista.xyz
+    - todoback.anishbista.xyz
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd-tls-cert
+  namespace: argocd
+  labels:
+    app.kubernetes.io/instance: gatewayapi-app
+spec:
+  dnsNames:
+    - argocd.anishbista.xyz
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-prod
+  secretName: argocd-tls-cert
