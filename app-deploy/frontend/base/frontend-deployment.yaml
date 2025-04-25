@@ -14,6 +14,9 @@ spec:
       labels:
         app: frontend
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
       containers:
       - name: frontend
         image: todoappproject.azurecr.io/frontend:4a180c0a987fb2a26a1a0719dcd6db0edd8c4b7c
@@ -26,6 +29,9 @@ spec:
         - name: config-volume
           mountPath: /usr/share/nginx/html/config.js
           subPath: config.js
+        securityContext:
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
       volumes:
       - name: config-volume
         configMap:
