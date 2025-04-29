@@ -8,7 +8,6 @@ resources:
 #- service-monitor.yaml
 - argocd-image-updater-acr-configmap.yaml
 - argocd-github-secret.yaml
-- ingress-certificate.yaml
 patches:
 - path: argocd-image-updater-configmap.yaml
 - path: patch-argocd-image-updater-deployment.yaml

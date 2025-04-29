@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - ../../base
   - config.yaml
-  - ingress.yaml
   - hpa.yaml
 namespace: dev
 patches:
